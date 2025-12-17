@@ -181,7 +181,8 @@ class TrueNASAPI(object):
                 "id": 0,
                 "params": [],
             }
-            if params is not None:
+            # Treat an empty dict as no params (some callers pass {} to mean none)
+            if params is not None and params != {}:
                 if not isinstance(params, list):
                     params = [params]
                 payload["params"] = params
